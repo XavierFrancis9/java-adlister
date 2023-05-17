@@ -7,13 +7,24 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    if (request.getMethod().equalsIgnoreCase("post")) {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        if (username.equalsIgnoreCase("admin") && password.equals("password")) {
+            response.sendRedirect("/profile.jsp");
+        } else {
+            response.sendRedirect("/login.jsp");
+        }
+    }
+%>
 <html>
 <head>
     <title>Login Form</title>
 </head>
 <body>
 
-<form action="profile.jsp" method="POST">
+<form action="login.jsp" method="POST">
     <label for="username">Username: </label>
     <input type="text" name="username" id="username">
     <label for="password">Password: </label>
@@ -21,11 +32,6 @@
     <button type="submit">Submit</button>
 </form>
 
-<c:choose>
-    <c:when test="${param.username.equalsIgnoreCase('admin')}">
-        <%=response.sendRedirect("http://localhost:8080/login.jsp")%>
-    </c:when>
-</c:choose>
 
 </body>
 </html>
