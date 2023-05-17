@@ -26,5 +26,6 @@
         <%=response.sendRedirect("http://localhost:8080/login.jsp")%>
     </c:when>
 </c:choose>
+
 </body>
 </html>
