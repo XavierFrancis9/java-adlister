@@ -12,5 +12,8 @@
 </head>
 <body>
 <h1><%= request.getAttribute("message") %></h1>
+<form method="GET" action="/guess">
+  <button type="submit">Play Again</button>
+</form>
 </body>
 </html>

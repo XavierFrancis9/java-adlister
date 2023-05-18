@@ -12,4 +12,9 @@ public class ColorPageServlet extends HttpServlet{
         String redirectURL = "/viewcolor?color=" + color;
         resp.sendRedirect(redirectURL);
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/pickcolor.jsp").forward(req, resp);
+    }
 }

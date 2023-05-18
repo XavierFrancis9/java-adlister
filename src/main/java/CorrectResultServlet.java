@@ -12,4 +12,5 @@ public class CorrectResultServlet extends HttpServlet {
         req.setAttribute("message", "Correct! You Win!");
         req.getRequestDispatcher("/result.jsp").forward(req, resp);
     }
+
 }
