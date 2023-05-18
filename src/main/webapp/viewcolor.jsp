@@ -17,5 +17,8 @@
 </head>
 <body>
 <h1>Your selected color: <%= request.getParameter("color") %></h1>
+<form action="/pickcolor" method="get">
+  <button>Pick New Color</button>
+</form>
 </body>
 </html>
