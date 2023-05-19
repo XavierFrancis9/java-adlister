@@ -1,5 +1,7 @@
 package controllers;
 
+import dao.Ads;
+import dao.DaoFactory;
 import models.Ad;
 
 import javax.servlet.ServletException;
@@ -16,7 +18,7 @@ public class AdsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//    -- gets ListAdsDao
+//    -- gets dao.ListAdsDao
         Ads listAdsDao = DaoFactory.getAdsDao();
 //    -- gets all ads
         List<Ad> ads = listAdsDao.all();
