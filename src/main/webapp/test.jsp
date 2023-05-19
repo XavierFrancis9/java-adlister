@@ -13,16 +13,27 @@
     <%@ include file="partials/beanCSS.jsp"%>
 </head>
 <body>
-
-<c:forEach var="album" items="${albums}">
-    <div class="card">
-        <h3>${album.getAlbum_name()}</h3>
-        <p>Artist: ${album.getArtist_name()}</p>
-        <p>Genre: ${album.getGenre()}</p>
-        <p>Sales(millions): ${album.getSales()}</p>
+<section>
+    <div class="container">
+        <h2>Albums</h2>
+        <c:forEach var="album" items="${albums}">
+            <div class="card">
+                <h3>${album.getAlbum_name()}</h3>
+                <p>Artist: ${album.getArtist_name()}</p>
+                <p>Genre: ${album.getGenre()}</p>
+                <p>Sales(millions): ${album.getSales()}</p>
+            </div>
+        </c:forEach>
     </div>
-
-</c:forEach>
-
+    <div class="container">
+        <h2>Quotes</h2>
+        <c:forEach var="quote" items="${quotes}">
+            <div class="card">
+                <h3>${quote.author.first_name} ${quote.author.last_name}</h3>
+                <p>"${quote.content}"</p>
+            </div>
+        </c:forEach>
+    </div>
+</section>
 </body>
 </html>
