@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-public class MySQLAdsDao implements AdsDao{
+public class MySQLAdsDao {
     private Connection connection;
     public MySQLAdsDao(Config config) {
         try {
