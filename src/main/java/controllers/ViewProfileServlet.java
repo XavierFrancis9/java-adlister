@@ -10,6 +10,9 @@ import java.io.IOException;
 @WebServlet(name = "controllers.ViewProfileServlet", urlPatterns = "/profile")
 public class ViewProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if((boolean) request.getSession().getAttribute("user" == false)) {
+
+        }
         request.getRequestDispatcher("/profile.jsp").forward(request, response);
     }
 }
