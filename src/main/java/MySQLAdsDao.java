@@ -41,7 +41,7 @@ public class MySQLAdsDao implements Ads{
         try {
             Statement stmt = connection.createStatement();
 
-            String insertAd = String.format("INSERT INTO national_parks(name, description, location) VALUES('%s','%s','%s')", ad.getId(), ad.getTitle(), ad.getDescription());
+            String insertAd = String.format("INSERT INTO ads(user_Id, title, description) VALUES('%s','%s','%s')", ad.getUserId(), ad.getTitle(), ad.getDescription());
 
             stmt.executeUpdate(insertAd, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
@@ -49,7 +49,8 @@ public class MySQLAdsDao implements Ads{
 
             return rs.getLong(1);
             
-        } catch (SQLException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Error creating statement.");
         }
     }
