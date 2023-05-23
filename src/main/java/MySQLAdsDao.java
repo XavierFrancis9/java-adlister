@@ -25,7 +25,7 @@ public class MySQLAdsDao implements Ads{
             List<Ad> ads = new ArrayList<>();
 
             while(rs.next()) {
-                ads.add(new Ad(rs.getLong("id"), rs.getLong("userId"), rs.getString("title"), rs.getString("description")));
+                ads.add(new Ad(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title"), rs.getString("description")));
             }
 
             return ads;
@@ -41,7 +41,7 @@ public class MySQLAdsDao implements Ads{
         try {
             Statement stmt = connection.createStatement();
 
-            String insertAd = String.format("INSERT INTO ads(user_Id, title, description) VALUES('%s','%s','%s')", ad.getUserId(), ad.getTitle(), ad.getDescription());
+            String insertAd = String.format("INSERT INTO ads(user_id, title, description) VALUES('%s','%s','%s')", ad.getUserId(), ad.getTitle(), ad.getDescription());
 
             stmt.executeUpdate(insertAd, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
@@ -50,28 +50,8 @@ public class MySQLAdsDao implements Ads{
             return rs.getLong(1);
             
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException("Error creating statement.");
         }
     }
 }
 
-//   @Override
-//    public Long insert(Ad ad) {
-//        try {
-//            Statement stmt = connection.createStatement();
-//            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
-//            ResultSet rs = stmt.getGeneratedKeys();
-//            rs.next();
-//            return rs.getLong(1);
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error creating a new ad.", e);
-//        }
-//    }
-//
-//    private String createInsertQuery(Ad ad) {
-//        return "INSERT INTO ads(user_id, title, description) VALUES "
-//            + "(" + ad.getUserId() + ", "
-//            + "'" + ad.getTitle() +"', "
-//            + "'" + ad.getDescription() + "')";
-//    }
