@@ -24,10 +24,12 @@ public class MySQLAdsDao implements Ads{
             ResultSet rs = stmt.executeQuery(selectAds);
             List<Ad> ads = new ArrayList<>();
 
+            // add ad to list as long as there is one to add
             while(rs.next()) {
                 ads.add(new Ad(rs.getLong("id"), rs.getLong("user_id"), rs.getString("title"), rs.getString("description")));
-            }
 
+            }
+            // return ads list
             return ads;
 
 
@@ -43,10 +45,14 @@ public class MySQLAdsDao implements Ads{
 
             String insertAd = String.format("INSERT INTO ads(user_id, title, description) VALUES('%s','%s','%s')", ad.getUserId(), ad.getTitle(), ad.getDescription());
 
+            // execute query and generate primary key  id
             stmt.executeUpdate(insertAd, Statement.RETURN_GENERATED_KEYS);
+
+            //access the add by the generated id
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
 
+            // return the new ad by accessing the first column
             return rs.getLong(1);
             
         } catch (Exception e) {
