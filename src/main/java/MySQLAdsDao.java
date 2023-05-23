@@ -1,11 +1,10 @@
 import com.mysql.cj.jdbc.Driver;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLAdsDao {
+public class MySQLAdsDao implements Ads{
     private Connection connection;
     public MySQLAdsDao(Config config) {
         try {
@@ -17,11 +16,33 @@ public class MySQLAdsDao {
     }
     @Override
     public List<Ad> all() {
-        return null;
+        try {
+            Statement stmt = connection.createStatement();
+
+            String selectAds = "SELECT * FROM ads";
+
+            ResultSet rs = stmt.executeQuery(selectAds);
+            List<Ad> ads = new ArrayList<>();
+
+            while(rs.next()) {
+                ads.add(new Ad(rs.getLong("id"), rs.getLong("userId"), rs.getString("title"), rs.getString("description")));
+            }
+
+            return ads;
+
+
+        } catch(Exception e) {
+            throw new RuntimeException("Error creating statement.");
+        }
     }
 
     @Override
     public Long insert(Ad ad) {
-        return null;
+        try {
+            Statement stmt = connection.createStatement();
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating statement.");
+        }
     }
 }
